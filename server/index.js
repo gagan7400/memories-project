@@ -3,13 +3,14 @@ const cors = require("cors")
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
+app.use(express.json())
 // import postRoutes from './routes/posts.js'
 const postRoutes = require('./routes/posts.js')
 app.use('/posts' ,postRoutes)
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-const CONNECTION_URL = 'mongodb+srv://gagan_7400:Gagan_717114@cluster0.wwekmmt.mongodb.net/memories?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb+srv://Gagan_7400:Gagan_2004@cluster0.wwekmmt.mongodb.net/memories?retryWrites=true&w=majority'
 const PORT = process.env.PORT ||5001;
 
 mongoose.connect(CONNECTION_URL ,{useNewUrlParser :true , useUnifiedTopology:true})

@@ -11,8 +11,46 @@ const getPosts = async (req, res) => {
     }
 
 }
-const createPost = (req, res) => {
-res.send("helo world")
+const createPost = async (req, res) => {
+    const post = req.body;
+    // const post = {title:"hello"};
+    const newPost = new postMessage(post)
+
+    try {
+        await newPost.save();
+        res.status(200).json(newPost)
+    } catch (error) {
+        res.status(409).json({ message: error.message })
+
+    }
 
 }
-module.exports = { getPosts, createPost };
+const updatePost = async (req, res) => {
+    const put = req.body;
+    console.log(req.params)
+    // const post = {title:"hello"};
+    const newPost =  await postMessage.updateMany(req.params,{$set:put })
+   
+    try {
+         
+        res.status(200).json(newPost)
+    } catch (error) {
+        res.status(409).json({ message: error.message })
+
+    }
+
+}
+const deletePost = async (req, res) => {
+     
+      const newPost =  await postMessage.deleteMany(req.body)
+   
+    try {
+         
+        res.status(200).json(newPost)
+    } catch (error) {
+        res.status(409).json({ message: error.message })
+
+    }
+
+}
+module.exports = { getPosts, createPost  ,updatePost ,deletePost};
