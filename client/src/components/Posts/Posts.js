@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Form() {
+function Post() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function Form() {
   )
 }
 
-export default Form
+export default Post
